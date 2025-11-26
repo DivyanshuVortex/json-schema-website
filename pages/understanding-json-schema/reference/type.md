@@ -15,6 +15,7 @@ At its core, JSON Schema defines the following basic types:
 
 - [array](../../understanding-json-schema/reference/array)
 - [boolean](../../understanding-json-schema/reference/boolean)
+- [integer](../../understanding-json-schema/reference/numeric)
 - [null](../../understanding-json-schema/reference/null)
 - [number](../../understanding-json-schema/reference/numeric)
 - [object](../../understanding-json-schema/reference/object)
@@ -37,7 +38,8 @@ analogous types in Python:
 | JSON    | Python       |
 |---------|--------------|
 | string  | string [1]   |
-| number  | int/float [2]|
+| number  | int/float    |
+| integer | int          |
 | object  | dict         |
 | array   | list         |
 | boolean | bool         |
@@ -49,8 +51,7 @@ analogous types in Python:
 analogous to `unicode` on Python 2.x and `str` on
 Python 3.x.
 
-[2] JSON does not have separate types for integer and
-floating-point.
+[2] JSON defines a single numeric literal, but JSON Schema distinguishes between `number` (any numeric value) and `integer` (no fractional part).
 
 [tab "Ruby"]
 
@@ -61,6 +62,7 @@ analogous types in Ruby:
 |---------|----------------------|
 | string  | String               |
 | number  | Integer/Float [3]    |
+| integer | Integer              |
 | object  | Hash                 |
 | array   | Array                |
 | boolean | TrueClass/FalseClass |
@@ -68,8 +70,7 @@ analogous types in Ruby:
 
 #### Footnotes
 
-[3] JSON does not have separate types for integer and
-floating-point.
+[3] JSON defines a single numeric literal, but JSON Schema distinguishes `number` and `integer`.
 
 [tab "Perl"]
 
@@ -80,6 +81,7 @@ their analogous types in Perl:
 |---------|--------------------------------------------------|
 | string  | scalar (SV)                                      |
 | number  | scalar (NV or IV), or Math::BigNum, Math::BigInt |
+| integer | scalar (IV) |
 | object  | reftype=HASH                                     |
 | array   | reftype=ARRAY                                    |
 | boolean | scalar or JSON::PP::Boolean                      |
@@ -94,6 +96,7 @@ their analogous types in Objective-C:
 |---------|--------------|
 | string  | NSString     |
 | number  | NSNumber     |
+| integer | NSNumber     |
 | object  | NSDictionary |
 | array   | NSArray      |
 | boolean | NSNumber  [4]|
@@ -114,6 +117,7 @@ their analogous types in Swift:
 |---------|------------|
 | string  | String     |
 | number  | Int/Double [5]|
+| integer | Int        |
 | object  | Dictionary |
 | array   | Array      |
 | boolean | Bool       |
@@ -128,6 +132,7 @@ to decode ``Int`` from a non-integer number in JSON.
 [tabs-end]
 
 The `type` keyword can take two forms:
+
 
 1. **A single string**. When it is a single string, it must be one of the types mentioned above (`array`, `boolean` , `number`, `null`, `object` or `string`). This specifies that the instance data is only valid when it matches that specific type. 
 
@@ -180,6 +185,7 @@ JSON Schema offers a variety of keywords to validate data against specific types
 | [array](../../understanding-json-schema/reference/array)        | `items`, `additionalItems`, `minItems`, `maxItems`, `uniqueItems` | Define item schemas, additional item handling, item count constraints, and uniqueness. |
 | [number](../../understanding-json-schema/reference/numeric) | `minimum`, `maximum`, `exclusiveMinimum`, `exclusiveMaximum`, `multipleOf` | Define numeric ranges and allowed increments. |
 | [object](../../understanding-json-schema/reference/object)      | `required`, `properties`, `additionalProperties`, `patternProperties`, `minProperties`, `maxProperties`, `dependencies` | Define required properties, property schemas, additional property handling, pattern-based property matching, and property count constraints. |
+| [integer](../../understanding-json-schema/reference/numeric)     | Same as `number` | Integers use numeric constraints but must not contain a fractional part. |
 | [string](../../understanding-json-schema/reference/string)       | `minLength`, `maxLength`, `pattern`, `format`| Restrict string length, pattern matching, and format validation (e.g., email, date). |
 
 
@@ -208,7 +214,9 @@ The JSON Schema specification has a bias toward networking-related formats due t
 
 ### Built-in Formats
 
+
 It should be noted that `format` is not limited to a specific set of valid values or types. Users may define additional custom formats, but the built-in formats apply only to the `string` type. Below, we cover the formats defined in the JSON Schema specification.
+
 
 #### Dates and Times
 
