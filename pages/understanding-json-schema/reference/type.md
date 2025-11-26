@@ -21,12 +21,10 @@ At its core, JSON Schema defines the following basic types:
 - [object](../../understanding-json-schema/reference/object)
 - [string](../../understanding-json-schema/reference/string)
 
-
 These types have analogs in most programming languages, though they may
 go by different names.
 
 > Note: JSON does not define an `integer` type. In JSON Schema, `"integer"` is shorthand for `"number"` with `"multipleOf": 1`, used to represent whole-number numeric values.
-
 
 [tabs-start "Language-specific info"]
 
@@ -133,7 +131,6 @@ to decode ``Int`` from a non-integer number in JSON.
 
 The `type` keyword can take two forms:
 
-
 1. **A single string**. When it is a single string, it must be one of the types mentioned above (`array`, `boolean` , `number`, `null`, `object` or `string`). This specifies that the instance data is only valid when it matches that specific type. 
 
 Here is an example of using `"number"` as a single string value:
@@ -214,9 +211,7 @@ The JSON Schema specification has a bias toward networking-related formats due t
 
 ### Built-in Formats
 
-
 It should be noted that `format` is not limited to a specific set of valid values or types. Users may define additional custom formats, but the built-in formats apply only to the `string` type. Below, we cover the formats defined in the JSON Schema specification.
-
 
 #### Dates and Times
 
